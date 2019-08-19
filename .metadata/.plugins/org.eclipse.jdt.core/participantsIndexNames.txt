@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\Users\sg90\SpringProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3932800055.index
+\AlphaShop\src\main\java
+C:\Users\sg90\SpringProjects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2129160604.index
+\AlphaShop\src\main\java
