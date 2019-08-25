@@ -1,6 +1,6 @@
 <footer class="footer text-xs-center">
 	<p class="text-muted">
-		<small>&copy; 2018 by Xantrix Inc.</small>
+		<small>&copy; 2019 by Glauco Sardone</small>
 	</p>
 	<p class="text-muted">
 		<a href="#"><small>Termini &amp; Condizioni</small> </a>
