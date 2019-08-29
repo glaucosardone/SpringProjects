@@ -18,7 +18,7 @@ public class ArticoliRepositoryImpl implements ArticoliRepository
 	@Override
 	public List<Articoli> SelArticoliByFilter(String Filtro) 
 	{
-		String Sql = "EXEC [dbo].[Sp_SelArticoli_temp] '" + Filtro + "';";
+		String Sql = "EXEC [dbo].[Sp_SelArticoli1] '" + Filtro + "';";
 		
 		List<Articoli> articoli = jdbcTemplate.query(Sql, new ArticoliMapper());
 		
