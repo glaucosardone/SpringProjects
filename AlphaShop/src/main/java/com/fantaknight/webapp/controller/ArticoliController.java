@@ -19,12 +19,21 @@ public class ArticoliController
 	@Autowired
 	private ArticoliService articoliService;
 	
+	private int NumArt = 0;
+	private List<Articoli> recordset;
+	
 	@RequestMapping(value = "/cerca/{filter}", method = RequestMethod.GET)
 	public String GetArticoliByFilter(@PathVariable("filter") String Filter, Model model)
 	{
-		List<Articoli> articoli = articoliService.SelArticoliByFilter(Filter);
+		recordset = articoliService.SelArticoliByFilter(Filter);
 		
-		model.addAttribute("Articoli", articoli);
+		if (recordset != null)
+			NumArt = recordset.size();
+		
+		model.addAttribute("NumArt", NumArt);
+		model.addAttribute("Titolo", "Ricerca Articoli");
+		model.addAttribute("Titolo2", "Risultati Ricerca " + Filter);
+		model.addAttribute("Articoli", recordset);
 		
 		return "articoli";
 
