@@ -158,6 +158,23 @@ public class ArticoliController
 			return "articoli";
 	}
 
+		// http://localhost:8080/alphashop/articoli/infoart/000087101
+		@RequestMapping(value = "/infoart/{codart}", method = RequestMethod.GET)
+		public String GetDettArticolo(@PathVariable("codart") String CodArt, Model model)
+		{
+				Articoli articolo = null;
+				recordset = articoliService.SelArticoliByFilter(CodArt);
+				
+				if (recordset != null)
+					articolo = recordset.get(0);
+	
+				model.addAttribute("Titolo", "Dettaglio Articolo");
+				model.addAttribute("Titolo2", "Dati Articolo " + CodArt);
+				model.addAttribute("articolo", articolo);
+	
+				return "infoArticolo";
+		} 
+
 
 
 	

@@ -21,4 +21,9 @@
 		<put-attribute name="content" value="/WEB-INF/view/articoli.jsp" />  
 	</definition>
 
+	<definition name="infoArticolo" extends="baseLayout">
+		<put-attribute name="titolo"  value="Scheda Articolo" />
+		<put-attribute name="content" value="/WEB-INF/view/dettarticolo.jsp" />  
+	</definition>
+
 </tiles-definitions>
