@@ -56,9 +56,9 @@ public class ArticoliRepositoryImpl implements ArticoliRepository
 	@Override
 	public void DelArticolo(String CodArt) 
 	{
-		String Sql = "DELETE FROM ARTICOLI WHERE CODART = '" + CodArt + "'";
+		String Sql = "DELETE FROM ARTICOLI WHERE CODART = ?";
 		
-		jdbcTemplate.update(Sql);
+		jdbcTemplate.update(Sql, CodArt);
 		
 	}
 
