@@ -1,8 +1,15 @@
+com\fantaknight\webapp\repository\MovimentiRepository.class
 com\fantaknight\webapp\repository\ArticoliMapper.class
 com\fantaknight\webapp\domain\Articoli.class
+com\fantaknight\webapp\repository\MovimentiRepositoryImpl.class
+com\fantaknight\webapp\controller\MovimentiController.class
 com\fantaknight\webapp\config\JdbcConfig.class
+com\fantaknight\webapp\repository\MovimentiMapper.class
 com\fantaknight\webapp\service\ArticoliService.class
+com\fantaknight\webapp\service\MovimentiServiceImpl.class
 com\fantaknight\webapp\repository\ArticoliRepositoryImpl.class
 com\fantaknight\webapp\controller\ArticoliController.class
 com\fantaknight\webapp\repository\ArticoliRepository.class
+com\fantaknight\webapp\domain\Movimenti.class
 com\fantaknight\webapp\service\ArticoliServiceImpl.class
+com\fantaknight\webapp\service\MovimentiService.class
