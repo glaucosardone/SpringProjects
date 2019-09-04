@@ -31,4 +31,9 @@
 		<put-attribute name="content" value="/WEB-INF/view/movimenti.jsp" />  
 	</definition>
 
+	<definition name="insArticolo" extends="baseLayout">
+		<put-attribute name="titolo"  value="Inserimento Nuovo Articolo" />
+		<put-attribute name="content" value="/WEB-INF/view/insarticolo.jsp" />  
+	</definition>
+
 </tiles-definitions>

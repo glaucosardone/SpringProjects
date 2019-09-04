@@ -9,13 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fantaknight.webapp.domain.Articoli;
+import com.fantaknight.webapp.domain.Iva;
+import com.fantaknight.webapp.domain.FamAssort;
+import com.fantaknight.webapp.repository.FamAssRepository;
+import com.fantaknight.webapp.repository.IvaRepository;
 import com.fantaknight.webapp.service.ArticoliService;
 
 @Controller
@@ -24,6 +35,13 @@ public class ArticoliController
 {
 	@Autowired
 	private ArticoliService articoliService;
+
+	@Autowired
+	private FamAssRepository famAssRepository;
+
+	@Autowired
+	private IvaRepository ivaRepository;
+	
 	
 	private int NumArt = 0;
 	private List<Articoli> recordset;
@@ -174,6 +192,47 @@ public class ArticoliController
 	
 				return "infoArticolo";
 		} 
+
+			//@RequestMapping(value = "/aggiungi", method = RequestMethod.GET)
+		@GetMapping(value = "/aggiungi")
+		public String InsArticoli(Model model)
+		{
+			Articoli articolo = new Articoli();
+			
+			List<FamAssort> famAssort = famAssRepository.SelFamAssort();
+			List<Iva> iva = ivaRepository.SelIva();
+
+			model.addAttribute("Titolo", "Inserimento Nuovo Articolo");
+			model.addAttribute("famAssort", famAssort);
+			model.addAttribute("iva", iva);
+			model.addAttribute("newArticolo", articolo);
+			
+			return "insArticolo";
+		}
+
+		@PostMapping(value="/aggiungi")
+		public String GestInsArticoli(@ModelAttribute("newArticolo") Articoli articolo, BindingResult result)
+		{
+			if (result.getSuppressedFields().length > 0)
+				throw new RuntimeException("ERRORE: Tentativo di eseguire il binding dei seguenti campi NON consentiti: "
+						+ StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
+			else
+			{
+				articoliService.InsArticolo(articolo);
+	
+			}
+			
+			return "redirect:/articoli/cerca/" + articolo.getCodArt();
+		}
+
+		@InitBinder
+		public void initialiseBinder(WebDataBinder binder)
+		{
+			binder.setAllowedFields("codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz");
+	
+			binder.setDisallowedFields("prezzo");
+	
+		}
 
 
 
