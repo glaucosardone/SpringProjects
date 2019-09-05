@@ -18,7 +18,7 @@
 		 <div class="portlet-title">
 		 	 <div class="caption font-red-sunglo">
             	<i class="icon-settings oi oi-pencil"></i>
-             	<span class="caption-subject bold uppercase">Dati Articolo</span>
+             	<span class="caption-subject bold uppercase"><spring:message code="insarticolo.form.titolo.label"/></span>
             </div>
 		 </div>
 		<div class="portlet-body form">
@@ -26,17 +26,17 @@
 				<div class="form-body">
 				
 					<div class="form-group">
-						<label for="codArt">Codice:</label>
+						<label for="codArt"><spring:message code="insarticolo.form.codArt.label"/></label>
 						<form:input id="codArt" path="codArt" type="text" class="form-control" placeholder="Codice Articolo"/>  
 					</div>
 					
 					<div class="form-group">
-						<label for="descrizione">Descrizione:</label>
+						<label for="descrizione"><spring:message code="insarticolo.form.descrizione.label"/></label>
 						<form:input id="descrizione" path="descrizione" type="text" class="form-control" placeholder="Descrizione Articolo"/> 	 
 					</div>
 					
 					<div class="form-group">
-						<label for="um">Unità di Misura:</label>
+						<label for="um"><spring:message code="insarticolo.form.um.label"/></label>
 						<form:select path="um" class="form-control">
 							<form:option value="PZ" label="Pezzi"/>
 							<form:option value="LT" label="Litri"/>
@@ -46,12 +46,12 @@
 					
 					<div class="form-row">
 						<div class="form-group col-md-4" >
-							<label for="pzCart">Pezzi per Cartone:</label>
+							<label for="pzCart"><spring:message code="insarticolo.form.pzCart.label"/></label>
 							<form:input id="pzCart" path="pzCart" type="text" value="0" class="form-control"/>  
 						</div>
 				
 						<div class="form-group col-md-4">
-							<label for="pesoNetto">Peso Netto:</label>
+							<label for="pesoNetto"><spring:message code="insarticolo.form.pesoNetto.label"/></label>
 							<form:input id="pesoNetto" path="pesoNetto" type="text" value="0" class="form-control"/>  
 						</div>
 						
@@ -96,8 +96,8 @@
 				<hr class="line-form">
 				
 				<div class="form-actions">
-					<input type="submit" id="btnAdd" class="btn btn-primary form-buttons" value = Aggiungi />
-					<input type="submit" id="btnAbort" class="btn btn-default form-buttons" value = Annulla />
+					<input type="submit" id="btnAdd" class="btn btn-primary form-buttons" value = <spring:message code="insarticolo.form.btnAdd.label"/> />
+					<input type="submit" id="btnAbort" class="btn btn-default form-buttons" value = <spring:message code="insarticolo.form.btnAbort.label"/> />
 				</div>
 			
 				</form:form>
