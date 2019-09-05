@@ -1,8 +1,12 @@
+com\fantaknight\webapp\repository\IngredientiMapper.class
 com\fantaknight\webapp\controller\MovimentiController.class
 com\fantaknight\webapp\config\JdbcConfig.class
+com\fantaknight\webapp\domain\Ingredienti.class
 com\fantaknight\webapp\domain\Iva.class
 com\fantaknight\webapp\repository\IvaRepository.class
+com\fantaknight\webapp\repository\IngredientiRepository.class
 com\fantaknight\webapp\service\ArticoliService.class
+com\fantaknight\webapp\repository\IngredientiRepositoryImpl.class
 com\fantaknight\webapp\repository\IvaRepositoryImpl.class
 com\fantaknight\webapp\controller\ArticoliController.class
 com\fantaknight\webapp\domain\Movimenti.class
@@ -20,4 +24,5 @@ com\fantaknight\webapp\repository\FamAssMapper.class
 com\fantaknight\webapp\service\MovimentiServiceImpl.class
 com\fantaknight\webapp\repository\ArticoliRepositoryImpl.class
 com\fantaknight\webapp\repository\FamAssortRepositoryImpl.class
+com\fantaknight\webapp\controller\IngredientiController.class
 com\fantaknight\webapp\repository\ArticoliRepository.class

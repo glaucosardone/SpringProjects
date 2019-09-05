@@ -35,8 +35,8 @@ public class IngredientiController
     }
     
 	@PostMapping(value = "/aggiungi/{codart}")
-    public String GestInsIngr(@ModelAttribute("Ingredienti") Ingredienti ingredienti, @PathVariable("codart") String CodArt))
-    {
+	public String GestInsIngr(@ModelAttribute("Ingredienti") Ingredienti ingredienti, @PathVariable("codart") String CodArt)
+	{
 
         ingredienti.setCodArt(CodArt);
         ingredientiRepository.InsIngredienti(ingredienti);

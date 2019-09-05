@@ -36,4 +36,9 @@
 		<put-attribute name="content" value="/WEB-INF/view/insarticolo.jsp" />  
 	</definition>
 
+	<definition name="insIngredienti" extends="baseLayout">
+		<put-attribute name="titolo"  value="Inserimento Nuovo Ingrediente" />
+		<put-attribute name="content" value="/WEB-INF/view/insingredienti.jsp" />  
+	</definition>
+
 </tiles-definitions>

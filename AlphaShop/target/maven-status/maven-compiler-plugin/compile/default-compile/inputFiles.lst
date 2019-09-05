@@ -1,3 +1,4 @@
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\IngredientiController.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Movimenti.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\FamAssort.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\MovimentiRepositoryImpl.java
@@ -18,10 +19,14 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repo
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Iva.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\MovimentiMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\service\ArticoliService.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\MovimentiRepository.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Ingredienti.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\TilesConfig.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\WebApplicationContextConfig.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiRepositoryImpl.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\FamAssMapper.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiRepository.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\MovimentiController.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\service\MovimentiService.java
