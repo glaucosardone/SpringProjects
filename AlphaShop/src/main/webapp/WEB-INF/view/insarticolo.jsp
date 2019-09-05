@@ -16,10 +16,14 @@
 <section class="container">
 	<div class="portlet light bordered">
 		 <div class="portlet-title">
-		 	 <div class="caption font-red-sunglo">
+		 	<div class="caption font-red-sunglo">
             	<i class="icon-settings oi oi-pencil"></i>
              	<span class="caption-subject bold uppercase"><spring:message code="insarticolo.form.titolo.label"/></span>
             </div>
+            <section class = "locale-link"> 
+            	<a href="?language=en"><img src="<c:url value="/img/US.png" />"></a> - 
+            	<a href="?language=it"><img src="<c:url value="/img/IT.png" />"></a>                
+      		</section> 
 		 </div>
 		<div class="portlet-body form">
 				<form:form  method="POST" modelAttribute="newArticolo">
@@ -64,28 +68,28 @@
 					</div>
 					        
 					<div class="form-group">
-						<label for="idStatoArt">Stato Articolo:</label>
+						<label for="idStatoArt"><spring:message code="insarticolo.form.idStatoArt.label"/></label>
 						<div class="mt-radio-inline">
 							<label class="mt-radio">
 								<form:radiobutton id="idStatoArt" class="form-check-input" path="idStatoArt" value="1" checked="true" /> 
-								Attivo 
+								<spring:message code="insarticolo.form.idStatoArt-value1.value"/> 
 								<span></span> 
 							</label>
 							<label class="mt-radio">
 								<form:radiobutton class="form-check-input" path="idStatoArt" value="2" /> 
-								Sospeso
+								<spring:message code="insarticolo.form.idStatoArt-value2.value"/> 
 								<span></span> 
 							</label>
 							<label class="mt-radio">
-							<form:radiobutton class="form-check-input" path="idStatoArt" value="3" /> 
-								Eliminato  
+								<form:radiobutton class="form-check-input" path="idStatoArt" value="3" /> 
+								<spring:message code="insarticolo.form.idStatoArt-value3.value"/>   
 								<span></span> 
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="idFamAss">Categoria:</label>
+						<label for="idFamAss"><spring:message code="insarticolo.form.idFamAss.label"/></label>
 						<form:select path="idFamAss" class="form-control">
 							 <form:options items="${famAssort}" itemValue="Id" itemLabel="Descrizione" />
 						</form:select>
