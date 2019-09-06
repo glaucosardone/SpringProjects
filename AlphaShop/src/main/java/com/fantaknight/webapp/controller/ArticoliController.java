@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -23,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fantaknight.webapp.domain.Articoli;
-import com.fantaknight.webapp.domain.Iva;
 import com.fantaknight.webapp.domain.FamAssort;
+import com.fantaknight.webapp.domain.Iva;
 import com.fantaknight.webapp.repository.FamAssRepository;
 import com.fantaknight.webapp.repository.IvaRepository;
 import com.fantaknight.webapp.service.ArticoliService;
@@ -199,20 +201,42 @@ public class ArticoliController
 		{
 			Articoli articolo = new Articoli();
 			
-			List<FamAssort> famAssort = famAssRepository.SelFamAssort();
-			List<Iva> iva = ivaRepository.SelIva();
+			//List<FamAssort> famAssort = famAssRepository.SelFamAssort();
+			//List<Iva> iva = ivaRepository.SelIva();
 
 			model.addAttribute("Titolo", "Inserimento Nuovo Articolo");
-			model.addAttribute("famAssort", famAssort);
-			model.addAttribute("iva", iva);
+			model.addAttribute("famAssort", getFamAssort());
+			model.addAttribute("iva", getIva());
 			model.addAttribute("newArticolo", articolo);
 			
 			return "insArticolo";
 		}
 
-		@PostMapping(value="/aggiungi")
-		public String GestInsArticoli(@ModelAttribute("newArticolo") Articoli articolo, BindingResult result)
+		@ModelAttribute("famAssort")
+		public List<FamAssort> getFamAssort()
 		{
+			List<FamAssort> famAssort = famAssRepository.SelFamAssort();
+	
+			return famAssort;
+		}
+	
+		@ModelAttribute("iva")
+		public List<Iva> getIva()
+		{
+			List<Iva> iva = ivaRepository.SelIva();
+	
+			return iva;
+		}
+
+		@PostMapping(value="/aggiungi")
+		public String GestInsArticoli(@Valid @ModelAttribute("newArticolo") Articoli articolo, BindingResult result)
+		{
+			
+			if (result.hasErrors())
+			{
+				return "insArticolo";
+			}
+
 			if (result.getSuppressedFields().length > 0)
 				throw new RuntimeException("ERRORE: Tentativo di eseguire il binding dei seguenti campi NON consentiti: "
 						+ StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));

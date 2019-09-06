@@ -6,7 +6,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -56,6 +59,12 @@ public class WebApplicationContextConfig  implements WebMvcConfigurer
 		registry.addResourceHandler("/img/**").addResourceLocations("/static/images/");
 	}
 
+	@Override
+	public Validator getValidator()
+	{
+		return validator();
+	}
+
 	@Bean
 	public LocaleResolver localeResolver()
 	{
@@ -72,6 +81,26 @@ public class WebApplicationContextConfig  implements WebMvcConfigurer
 		return r;
 
 	}
+
+	@Bean(name = "validator")
+	public LocalValidatorFactoryBean validator()
+	{
+		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+		bean.setValidationMessageSource(messageSource());
+
+		return bean;
+	}
+	
+	/* Alternetiva del MessageSource
+	@Bean
+    public MessageSource messageSource() 
+	{
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
+    */
 
 	@Bean
 	public MessageSource messageSource()
