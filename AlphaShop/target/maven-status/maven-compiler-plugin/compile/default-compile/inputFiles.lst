@@ -22,6 +22,7 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\serv
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\MovimentiRepository.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Ingredienti.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\validator\CodArt.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\TilesConfig.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\WebApplicationContextConfig.java
@@ -30,3 +31,4 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repo
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiRepository.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\MovimentiController.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\service\MovimentiService.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\validator\CodArtValidator.java

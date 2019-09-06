@@ -9,6 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fantaknight.webapp.validator.CodArt;
+
 public class Articoli implements Serializable
 {
 	private static final long serialVersionUID = -667971422269719485L;
@@ -19,6 +21,7 @@ public class Articoli implements Serializable
 	
 	@NotEmpty(message = "{NotEmpty.Articoli.codArt.validation}")
 	@Size(min=4, max=20, message="{Size.Articoli.codArt.validation}")
+	@CodArt
 	private String codArt;
 
 	@Size(min=8, max=60, message = "{Size.Articoli.descrizione.validation}")
