@@ -16,7 +16,10 @@
 	<div class="row">
 		
 		<div class="card">
-			<img class="card-img-top card-image" src="<c:url value="/static/images/food.jpg" />" alt="Card image cap">
+				
+			<c:if test="${IsFileOk}">
+				<img class="card-img-top card-image" src="<c:url value="/img/Articoli/${articolo.codArt}.png"></c:url>" alt="Immagine Prodotto">
+			</c:if>
 			<div class="card-body">
     			<h3 class="card-title price-art">
     				Euro <fmt:formatNumber value = "${articolo.prezzo}"  minFractionDigits = "2" type = "number"/> 
@@ -30,9 +33,9 @@
 	   				<fmt:formatNumber value = "${articolo.pesoNetto}"  minFractionDigits = "2" type = "number"/></span></li>
 	   	 		<li class="list-group-item">Prezzo Euro al Lt|KG: <span class="info-art">
 	   	 			<fmt:formatNumber value = "${articolo.prezzoKg}"  minFractionDigits = "2" type = "number"/></span></li>
-	    		<li class="list-group-item">Disponibilit‡ (PZ/KG): <span class="info-art">
+	    		<li class="list-group-item">Disponibilit√† (PZ/KG): <span class="info-art">
 	    			<fmt:formatNumber value = "${articolo.qtaMag}"  minFractionDigits = "2" type = "number"/></span></li>
-	    		<li class="list-group-item">Stato: <span class="badge badge-info">Normalit‡</span></li>
+	    		<li class="list-group-item">Stato: <span class="badge badge-info">Normalit√†</span></li>
   			</ul>
   			<div class="card-body">
     		<a href="#" class="card-link">Acquista</a>

@@ -9,10 +9,10 @@ com\fantaknight\webapp\repository\IngredientiRepository.class
 com\fantaknight\webapp\service\ArticoliService.class
 com\fantaknight\webapp\repository\IngredientiRepositoryImpl.class
 com\fantaknight\webapp\repository\IvaRepositoryImpl.class
-com\fantaknight\webapp\controller\ArticoliController.class
 com\fantaknight\webapp\domain\Movimenti.class
 com\fantaknight\webapp\service\ArticoliServiceImpl.class
 com\fantaknight\webapp\service\MovimentiService.class
+com\xantrix\webapp\controller\ArticoliController.class
 com\fantaknight\webapp\repository\MovimentiRepository.class
 com\fantaknight\webapp\repository\ArticoliMapper.class
 com\fantaknight\webapp\domain\Articoli.class

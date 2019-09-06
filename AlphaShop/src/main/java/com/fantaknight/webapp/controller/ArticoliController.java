@@ -1,10 +1,12 @@
-package com.fantaknight.webapp.controller;
+package com.xantrix.webapp.controller;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,16 +39,17 @@ public class ArticoliController
 {
 	@Autowired
 	private ArticoliService articoliService;
-
+	
 	@Autowired
 	private FamAssRepository famAssRepository;
-
+	
 	@Autowired
 	private IvaRepository ivaRepository;
 	
-	
 	private int NumArt = 0;
 	private List<Articoli> recordset;
+	
+	private final String PathImages = "static\\images\\Articoli\\";
 	
 	// http://localhost:8080/alphashop/articoli/cerca/barilla
 	@RequestMapping(value = "/cerca/{filter}", method = RequestMethod.GET)
@@ -56,6 +59,8 @@ public class ArticoliController
 		
 		if (recordset != null)
 			NumArt = recordset.size();
+		
+		articoliService.DelArticolo("test");
 		
 		model.addAttribute("NumArt", NumArt);
 		model.addAttribute("Titolo", "Ricerca Articoli");
@@ -133,8 +138,6 @@ public class ArticoliController
 				.collect(Collectors.toList());
 
 		/*
-		 * Possiamo usare sorted per determinare il riordino degli stream dei records in base a dei parametri
-		 * 
 		 * if (orderBy.equals("codart") && tipo.equals("asc")) recordset =
 		 * recordset.stream().sorted(Comparator.comparing(Articoli::getCodArt))
 		 * .collect(Collectors.toList()); else if (orderBy.equals("codart") &&
@@ -177,88 +180,102 @@ public class ArticoliController
 
 			return "articoli";
 	}
+	
+	// http://localhost:8080/alphashop/articoli/infoart/000087101
+	@RequestMapping(value = "/infoart/{codart}", method = RequestMethod.GET)
+	public String GetDettArticolo(@PathVariable("codart") String CodArt, Model model, HttpServletRequest request)
+	{
+			Articoli articolo = null;
+			recordset = articoliService.SelArticoliByFilter(CodArt);
+			
+			boolean IsFileOk = false;
+			
+			if (recordset != null)
+				articolo = recordset.get(0);
+			
+			try
+			{
+				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				String PathName = rootDirectory + PathImages + articolo.getCodArt().trim() + ".png";
 
-		// http://localhost:8080/alphashop/articoli/infoart/000087101
-		@RequestMapping(value = "/infoart/{codart}", method = RequestMethod.GET)
-		public String GetDettArticolo(@PathVariable("codart") String CodArt, Model model)
-		{
-				Articoli articolo = null;
-				recordset = articoliService.SelArticoliByFilter(CodArt);
+				File f = new File(PathName);
 				
-				if (recordset != null)
-					articolo = recordset.get(0);
+				IsFileOk = f.exists();
+				
+			} 
+			catch (Exception ex)
+			{ 
+			}
+		
+			model.addAttribute("Titolo", "Dettaglio Articolo");
+			model.addAttribute("Titolo2", "Dati Articolo " + CodArt);
+			model.addAttribute("articolo", articolo);
+			model.addAttribute("IsFileOk", IsFileOk);
+			
+			
+			return "infoArticolo";
+	} 
 	
-				model.addAttribute("Titolo", "Dettaglio Articolo");
-				model.addAttribute("Titolo2", "Dati Articolo " + CodArt);
-				model.addAttribute("articolo", articolo);
-	
-				return "infoArticolo";
-		} 
+	//@RequestMapping(value = "/aggiungi", method = RequestMethod.GET)
+	@GetMapping(value = "/aggiungi")
+	public String InsArticoli(Model model)
+	{
+		Articoli articolo = new Articoli();
+		
+		//List<FamAssort> famAssort = famAssRepository.SelFamAssort();
+		//List<Iva> iva = ivaRepository.SelIva();
 
-			//@RequestMapping(value = "/aggiungi", method = RequestMethod.GET)
-		@GetMapping(value = "/aggiungi")
-		public String InsArticoli(Model model)
+		model.addAttribute("Titolo", "Inserimento Nuovo Articolo");
+		model.addAttribute("famAssort", getFamAssort());
+		model.addAttribute("iva", getIva());
+		model.addAttribute("newArticolo", articolo);
+		
+		return "insArticolo";
+	}
+	
+	@ModelAttribute("famAssort")
+	public List<FamAssort> getFamAssort()
+	{
+		List<FamAssort> famAssort = famAssRepository.SelFamAssort();
+
+		return famAssort;
+	}
+
+	@ModelAttribute("iva")
+	public List<Iva> getIva()
+	{
+		List<Iva> iva = ivaRepository.SelIva();
+
+		return iva;
+	}
+	
+	@PostMapping(value="/aggiungi")
+	public String GestInsArticoli(@Valid @ModelAttribute("newArticolo") Articoli articolo, BindingResult result)
+	{
+		if (result.hasErrors())
 		{
-			Articoli articolo = new Articoli();
-			
-			//List<FamAssort> famAssort = famAssRepository.SelFamAssort();
-			//List<Iva> iva = ivaRepository.SelIva();
-
-			model.addAttribute("Titolo", "Inserimento Nuovo Articolo");
-			model.addAttribute("famAssort", getFamAssort());
-			model.addAttribute("iva", getIva());
-			model.addAttribute("newArticolo", articolo);
-			
 			return "insArticolo";
 		}
-
-		@ModelAttribute("famAssort")
-		public List<FamAssort> getFamAssort()
+		
+		if (result.getSuppressedFields().length > 0)
+			throw new RuntimeException("ERRORE: Tentativo di eseguire il binding dei seguenti campi NON consentiti: "
+					+ StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
+		else
 		{
-			List<FamAssort> famAssort = famAssRepository.SelFamAssort();
-	
-			return famAssort;
+			articoliService.InsArticolo(articolo);
+
 		}
+		
+		return "redirect:/articoli/cerca/" + articolo.getCodArt();
+	}
 	
-		@ModelAttribute("iva")
-		public List<Iva> getIva()
-		{
-			List<Iva> iva = ivaRepository.SelIva();
-	
-			return iva;
-		}
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder)
+	{
+		binder.setAllowedFields("codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz","language");
 
-		@PostMapping(value="/aggiungi")
-		public String GestInsArticoli(@Valid @ModelAttribute("newArticolo") Articoli articolo, BindingResult result)
-		{
-			
-			if (result.hasErrors())
-			{
-				return "insArticolo";
-			}
+		binder.setDisallowedFields("prezzo");
 
-			if (result.getSuppressedFields().length > 0)
-				throw new RuntimeException("ERRORE: Tentativo di eseguire il binding dei seguenti campi NON consentiti: "
-						+ StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
-			else
-			{
-				articoliService.InsArticolo(articolo);
-	
-			}
-			
-			return "redirect:/articoli/cerca/" + articolo.getCodArt();
-		}
-
-		@InitBinder
-		public void initialiseBinder(WebDataBinder binder)
-		{
-			binder.setAllowedFields("codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz");
-	
-			binder.setDisallowedFields("prezzo");
-	
-		}
-
-
-
+	}
 	
 }
