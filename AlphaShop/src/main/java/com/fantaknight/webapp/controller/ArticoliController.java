@@ -156,7 +156,7 @@ public class ArticoliController
 		return "articoli";
 	}
 	
-	// http://localhost:8080/AlphaShop/articoli/cerca/barilla/creati?daData=2010-10-31&aData=2015-10-31
+	// http://localhost:8080/alphaShop/articoli/cerca/barilla/creati?daData=2010-10-31&aData=2015-10-31
 	@RequestMapping(value = "/cerca/{filter}/creati", method = RequestMethod.GET)
 	public String GetArticoliByFilterDate(@PathVariable("filter") String Filter,
 				@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam("daData") Date startDate,
