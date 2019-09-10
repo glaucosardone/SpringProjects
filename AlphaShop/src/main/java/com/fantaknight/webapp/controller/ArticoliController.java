@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fantaknight.webapp.domain.Articoli;
 import com.fantaknight.webapp.domain.FamAssort;
@@ -250,11 +251,29 @@ public class ArticoliController
 	}
 	
 	@PostMapping(value="/aggiungi")
-	public String GestInsArticoli(@Valid @ModelAttribute("newArticolo") Articoli articolo, BindingResult result)
+	public String GestInsArticoli(@Valid @ModelAttribute("newArticolo") Articoli articolo, BindingResult result, HttpServletRequest request)
 	{
+		MultipartFile productImage = articolo.getImmagine();
+		
 		if (result.hasErrors())
 		{
 			return "insArticolo";
+		}
+
+		if (productImage != null && !productImage.isEmpty())
+		{
+			try
+			{
+				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				String PathName = rootDirectory + PathImages + articolo.getCodArt().trim() + ".png";
+
+				productImage.transferTo(new File(PathName));
+				
+			} 
+			catch (Exception ex)
+			{
+				throw new RuntimeException("Errore trasferimento file", ex);
+			}
 		}
 		
 		if (result.getSuppressedFields().length > 0)
@@ -266,13 +285,14 @@ public class ArticoliController
 
 		}
 		
-		return "redirect:/articoli/cerca/" + articolo.getCodArt();
+		return "redirect:/articoli/infoart/" + articolo.getCodArt().trim();
+		//return "redirect:/articoli/cerca/" + articolo.getCodArt();
 	}
 	
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder)
 	{
-		binder.setAllowedFields("codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz","language");
+		binder.setAllowedFields("codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz","language","immagine");
 
 		binder.setDisallowedFields("prezzo");
 

@@ -9,6 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fantaknight.webapp.validator.CodArt;
 
 public class Articoli implements Serializable
@@ -57,6 +59,8 @@ public class Articoli implements Serializable
 	private int idFamAss;
 	
 	private String desFamAss;
+
+	private MultipartFile Immagine; 
 	
 	public Articoli()
 	{
@@ -180,6 +184,14 @@ public class Articoli implements Serializable
 
 	public void setDesFamAss(String desFamAss) {
 		this.desFamAss = desFamAss;
+	}
+
+	public MultipartFile getImmagine() {
+		return Immagine;
+	}
+
+	public void setImmagine(MultipartFile immagine) {
+		Immagine = immagine;
 	}
 	
 	

@@ -26,7 +26,7 @@
       		</section> 
 		 </div>
 		<div class="portlet-body form">
-				<form:form  method="POST" modelAttribute="newArticolo">
+				<form:form  method="POST" modelAttribute="newArticolo" enctype="multipart/form-data">
 				<form:errors path="*" cssClass="alert alert-danger" element="div"/> 
 				<div class="form-body">
 				
@@ -101,6 +101,11 @@
 							 <form:options items="${famAssort}" itemValue="Id" itemLabel="Descrizione" />
 						</form:select>
 						<form:errors path="idFamAss" cssClass="text-danger"/> 
+					</div>
+					
+					<div class="form-group">
+						<label for="immagine"><spring:message code="insarticolo.form.immagine.label"/></label>
+						<form:input id="immagine" path="immagine" type="file" class="form:input-large" />  
 					</div>
 					
 				</div>

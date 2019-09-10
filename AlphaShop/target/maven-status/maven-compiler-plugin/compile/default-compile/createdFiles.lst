@@ -9,6 +9,7 @@ com\fantaknight\webapp\repository\IvaRepository.class
 com\fantaknight\webapp\repository\IngredientiRepository.class
 com\fantaknight\webapp\config\WebApplicationContextConfig.class
 com\fantaknight\webapp\service\ArticoliService.class
+com\fantaknight\webapp\config\MultipartResolverConfig.class
 com\fantaknight\webapp\config\TilesConfig.class
 com\fantaknight\webapp\repository\IngredientiRepositoryImpl.class
 com\fantaknight\webapp\repository\IvaRepositoryImpl.class
