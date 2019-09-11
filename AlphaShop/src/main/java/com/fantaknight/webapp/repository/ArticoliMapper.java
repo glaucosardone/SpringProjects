@@ -14,7 +14,7 @@ public class ArticoliMapper implements RowMapper<Articoli>
 		Articoli articoli = new Articoli();
 		
 		try
-		{
+		{	
 			articoli.setRiga(row.getInt("RIGA"));  
 			articoli.setCodArt(row.getString("CODART").trim());
 			articoli.setDescrizione(row.getString("DESCRIZIONE").trim());

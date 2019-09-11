@@ -14,6 +14,7 @@ com\fantaknight\webapp\config\TilesConfig.class
 com\fantaknight\webapp\repository\IngredientiRepositoryImpl.class
 com\fantaknight\webapp\repository\IvaRepositoryImpl.class
 com\fantaknight\webapp\controller\ArticoliController.class
+com\fantaknight\webapp\exception\NoInfoArtFoundException.class
 com\fantaknight\webapp\domain\Movimenti.class
 com\fantaknight\webapp\service\ArticoliServiceImpl.class
 com\fantaknight\webapp\service\MovimentiService.class

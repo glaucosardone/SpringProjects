@@ -6,6 +6,7 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\serv
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Articoli.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\JdbcConfig.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\FamAssRepository.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\exception\NoInfoArtFoundException.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\FamAssortRepositoryImpl.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\IndexController.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaRepository.java

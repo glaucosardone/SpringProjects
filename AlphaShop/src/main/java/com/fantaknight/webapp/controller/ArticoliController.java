@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
@@ -26,10 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fantaknight.webapp.domain.Articoli;
 import com.fantaknight.webapp.domain.FamAssort;
 import com.fantaknight.webapp.domain.Iva;
+import com.fantaknight.webapp.exception.NoInfoArtFoundException;
 import com.fantaknight.webapp.repository.FamAssRepository;
 import com.fantaknight.webapp.repository.IvaRepository;
 import com.fantaknight.webapp.service.ArticoliService;
@@ -191,7 +194,9 @@ public class ArticoliController
 			
 			boolean IsFileOk = false;
 			
-			if (recordset != null)
+			if (recordset == null || recordset.isEmpty())
+				throw new NoInfoArtFoundException(CodArt); 
+			else
 				articolo = recordset.get(0);
 			
 			try
@@ -216,6 +221,20 @@ public class ArticoliController
 			
 			return "infoArticolo";
 	} 
+
+	@ExceptionHandler(NoInfoArtFoundException.class)
+	public ModelAndView handleError(HttpServletRequest request, NoInfoArtFoundException exception)
+	{
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("codice", exception.getCodArt());
+		mav.addObject("exception", exception);
+		mav.addObject("url", request.getRequestURL() + "?" + request.getQueryString());
+		
+		mav.setViewName("noInfoArt");
+
+		return mav;
+	}
 	
 	//@RequestMapping(value = "/aggiungi", method = RequestMethod.GET)
 	@GetMapping(value = "/aggiungi")
