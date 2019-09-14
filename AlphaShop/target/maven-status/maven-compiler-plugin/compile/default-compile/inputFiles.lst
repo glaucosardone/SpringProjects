@@ -6,6 +6,7 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\serv
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Articoli.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\JdbcConfig.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\FamAssRepository.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\views\MyAbstractPdfView.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\exception\NoInfoArtFoundException.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\FamAssortRepositoryImpl.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\IndexController.java
@@ -24,6 +25,7 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\conf
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\MovimentiRepository.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\domain\Ingredienti.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\views\ArticoliPdfView.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\validator\CodArt.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaMapper.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\TilesConfig.java

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import com.fantaknight.webapp.domain.Articoli;
+import com.fantaknight.webapp.views.ArticoliPdfView;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -111,6 +112,12 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
+	public ArticoliPdfView articoliPdfView()
+	{
+		return new ArticoliPdfView("Articoli.pdf");
+	}
+
+	@Bean
 	public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 		resolver.setContentNegotiationManager(manager);
@@ -118,6 +125,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 		ArrayList<View> views = new ArrayList<>();
 		views.add(jsonView()); // Formato JSON
 		views.add(xmlView()); // Formato XML
+		views.add(articoliPdfView()); // Formato PDF
 		 
 		resolver.setDefaultViews(views);
 		
