@@ -222,6 +222,15 @@ public class ArticoliController
 			return "infoArticolo";
 	} 
 
+	@RequestMapping(value = "/cerca/{filter}/download", method = RequestMethod.GET)
+	public String GetArticoliByFilterDwld(@PathVariable("filter") String Filter, Model model)
+	{
+		recordset = articoliService.SelArticoliByFilter(Filter);
+		model.addAttribute("Articoli", recordset);
+
+		return "";
+	}
+
 	@ExceptionHandler(NoInfoArtFoundException.class)
 	public ModelAndView handleError(HttpServletRequest request, NoInfoArtFoundException exception)
 	{
