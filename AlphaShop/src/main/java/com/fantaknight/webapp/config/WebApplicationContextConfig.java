@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import com.fantaknight.webapp.domain.Articoli;
+import com.fantaknight.webapp.views.ArticoliExcelView;
 import com.fantaknight.webapp.views.ArticoliPdfView;
 
 import org.springframework.context.MessageSource;
@@ -118,6 +119,12 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
+	public ArticoliExcelView articoliExcelView()
+	{
+		return new ArticoliExcelView("Articoli.xlsx");
+	}
+
+	@Bean
 	public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 		resolver.setContentNegotiationManager(manager);
@@ -126,6 +133,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 		views.add(jsonView()); // Formato JSON
 		views.add(xmlView()); // Formato XML
 		views.add(articoliPdfView()); // Formato PDF
+		views.add(articoliExcelView()); // Formato EXCEL
 		 
 		resolver.setDefaultViews(views);
 		
