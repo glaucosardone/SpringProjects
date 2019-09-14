@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import com.fantaknight.webapp.domain.Articoli;
+import com.fantaknight.webapp.views.ArticoliCsvView;
 import com.fantaknight.webapp.views.ArticoliExcelView;
 import com.fantaknight.webapp.views.ArticoliPdfView;
 
@@ -125,6 +126,12 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
+	public ArticoliCsvView articoliCsvView()
+	{
+		return new ArticoliCsvView("Articoli.csv");
+	}
+
+	@Bean
 	public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 		resolver.setContentNegotiationManager(manager);
@@ -134,6 +141,7 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 		views.add(xmlView()); // Formato XML
 		views.add(articoliPdfView()); // Formato PDF
 		views.add(articoliExcelView()); // Formato EXCEL
+		views.add(articoliCsvView()); // Formato CSV
 		 
 		resolver.setDefaultViews(views);
 		

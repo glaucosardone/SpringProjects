@@ -13,6 +13,7 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repo
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\IndexController.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaRepository.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaRepositoryImpl.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\views\ArticoliCsvView.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\ArticoliRepository.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\service\ArticoliServiceImpl.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\controller\ArticoliController.java
@@ -29,6 +30,7 @@ c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\doma
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\views\ArticoliPdfView.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\validator\CodArt.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IvaMapper.java
+c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\views\MyAbstractCsvView.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\TilesConfig.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\config\WebApplicationContextConfig.java
 c:\Users\sg90\SpringProjects\Alphashop\src\main\java\com\fantaknight\webapp\repository\IngredientiRepositoryImpl.java
