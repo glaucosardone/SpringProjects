@@ -8,11 +8,15 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fantaknight.webapp.validator.CodArt;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@XmlRootElement
 public class Articoli implements Serializable
 {
 	private static final long serialVersionUID = -667971422269719485L;
@@ -60,6 +64,7 @@ public class Articoli implements Serializable
 	
 	private String desFamAss;
 
+	@JsonIgnore
 	private MultipartFile Immagine; 
 	
 	public Articoli()
@@ -186,6 +191,7 @@ public class Articoli implements Serializable
 		this.desFamAss = desFamAss;
 	}
 
+	@XmlTransient
 	public MultipartFile getImmagine() {
 		return Immagine;
 	}
