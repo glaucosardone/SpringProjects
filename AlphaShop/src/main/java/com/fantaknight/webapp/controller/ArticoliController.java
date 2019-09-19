@@ -54,6 +54,34 @@ public class ArticoliController
 	private List<Articoli> recordset;
 	
 	private final String PathImages = "static\\images\\Articoli\\";
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String GetArticoli(Model model)
+	{
+		model.addAttribute("Titolo", "Ricerca Articoli");
+		model.addAttribute("Titolo2", "Ricerca gli articoli");
+		model.addAttribute("IsArticoli", true);
+		
+		return "articoli";
+	}
+	
+	@GetMapping(value = "/search")
+	public String SearchItem(@RequestParam("filter") String pSearchTerm, Model model)
+	{
+		recordset = articoliService.SelArticoliByFilter(pSearchTerm);
+
+		if (recordset != null)
+			NumArt = recordset.size();
+
+		model.addAttribute("NumArt", NumArt);
+		model.addAttribute("Titolo", "Ricerca Articoli");
+		model.addAttribute("Titolo2", "Risultati Ricerca " + pSearchTerm);
+		model.addAttribute("Articoli", recordset);
+		model.addAttribute("IsArticoli", true);
+		model.addAttribute("filter", pSearchTerm);
+
+		return "articoli";
+	}
 	
 	// http://localhost:8080/alphashop/articoli/cerca/barilla
 	@RequestMapping(value = "/cerca/{filter}", method = RequestMethod.GET)
@@ -261,6 +289,22 @@ public class ArticoliController
 		
 		return "insArticolo";
 	}
+
+	@GetMapping(value = "/modifica/{CodArt}")
+	public String UpdArticoli(Model model, @PathVariable("CodArt") String CodArt)
+	{
+		Articoli articolo =  articoliService.SelArticoliByFilter(CodArt).get(0);
+		
+		if (articolo == null)
+			throw new NoInfoArtFoundException(CodArt); 
+		
+		model.addAttribute("Titolo", "Modifica Articolo");
+		model.addAttribute("newArticolo", articolo);
+		model.addAttribute("famAssort", getFamAssort());
+		model.addAttribute("Iva", getIva());
+
+		return "insArticolo";
+	}
 	
 	@ModelAttribute("famAssort")
 	public List<FamAssort> getFamAssort()
@@ -316,11 +360,68 @@ public class ArticoliController
 		return "redirect:/articoli/infoart/" + articolo.getCodArt().trim();
 		//return "redirect:/articoli/cerca/" + articolo.getCodArt();
 	}
+
+	@RequestMapping(value = "/modifica/{CodArt}", method = RequestMethod.POST)
+	public String GestUpdArticoli(@Valid @ModelAttribute("newArticolo") Articoli articolo, BindingResult result,
+			@PathVariable("CodArt") String CodArt, Model model, HttpServletRequest request)
+	{
+
+		if (result.hasErrors())
+		{
+			return "insArticolo";
+		}
+
+		MultipartFile productImage = articolo.getImmagine();
+
+		if (productImage != null && !productImage.isEmpty())
+		{
+			try
+			{
+				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				String PathName = rootDirectory + PathImages + articolo.getCodArt().trim() + ".png";
+
+				productImage.transferTo(new File(PathName));
+				
+			} 
+			catch (Exception ex)
+			{
+				throw new RuntimeException("Errore trasferimento file", ex);
+			}
+		}
+
+		if (result.getSuppressedFields().length > 0)
+			throw new RuntimeException("ERRORE: Tentativo di eseguire il binding dei seguenti campi NON consentiti: "
+					+ StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
+		else
+		{
+			articoliService.InsArticolo(articolo);
+		}
+
+		return "redirect:/articoli/infoart/" + CodArt.trim();
+	}
+
+	@GetMapping(value = "/elimina/{CodArt}")
+	public String DelArticolo(@PathVariable("CodArt") String codArt, Model model)
+	{
+		try
+		{
+			if (codArt.length() > 0)
+			{
+				articoliService.DelArticolo(codArt);
+			}
+		} 
+		catch (Exception ex)
+		{
+			throw new RuntimeException("Errore eliminazione articolo", ex);
+		}
+
+		return "redirect:/articoli/";
+	}
 	
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder)
 	{
-		binder.setAllowedFields("codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz","language","immagine");
+		binder.setAllowedFields("CodArt", "codArt", "descrizione", "um", "pzCart", "pesoNetto", "idIva", "idStatoArt","idFamAss","dataCreaz","language","immagine");
 
 		binder.setDisallowedFields("prezzo");
 

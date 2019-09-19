@@ -37,7 +37,7 @@ public class ArticoliRepositoryImpl implements ArticoliRepository
 	@Override
 	public void InsArticolo(Articoli articolo) 
 	{
-		String Sql = "EXEC Sp_InsArticoli3 '" + 
+		String Sql = "EXEC Sp_InsArticoli '" + 
 				 articolo.getCodArt() + "','" + 
 				 articolo.getDescrizione().replace("'", "''") + "','" + 
 				 articolo.getUm() + "','" +

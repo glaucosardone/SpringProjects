@@ -55,13 +55,13 @@
 					<div class="form-row">
 						<div class="form-group col-md-4" >
 							<label for="pzCart"><spring:message code="insarticolo.form.pzCart.label"/></label>
-							<form:input id="pzCart" path="pzCart" type="text" value="0" class="form-control"/>  
+							<form:input id="pzCart" path="pzCart" type="text" class="form-control"/>  
 							<form:errors path="pzCart" cssClass="text-danger"/>
 						</div>
 				
 						<div class="form-group col-md-4">
 							<label for="pesoNetto"><spring:message code="insarticolo.form.pesoNetto.label"/></label>
-							<form:input id="pesoNetto" path="pesoNetto" type="text" value="0" class="form-control"/> 
+							<form:input id="pesoNetto" path="pesoNetto" type="text" class="form-control"/> 
 							<form:errors path="pesoNetto" cssClass="text-danger"/> 
 						</div>
 						
